@@ -1,4 +1,6 @@
-﻿namespace LearnRouting.Models
+﻿using LearnRouting.Validation;
+
+namespace LearnRouting.Models
 {
     public class Employee
     {
@@ -13,6 +15,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
+
+        [Employee_EnsureSalary]
         public int Salary { get; set; }
     }
 }
