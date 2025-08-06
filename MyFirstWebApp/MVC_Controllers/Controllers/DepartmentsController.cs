@@ -4,7 +4,7 @@ namespace MVC_Controllers.Controllers
 {
     [Controller]
     [Route("/api")]
-    public class Departments
+    public class DepartmentsController: Controller
     {
         //Action Methods or endpoint handler
 

@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+
+//Add Xml serializer formatters for xml support
+builder.Services.AddControllers().AddXmlSerializerFormatters();
+
 var app = builder.Build();
 
 app.UseRouting();
