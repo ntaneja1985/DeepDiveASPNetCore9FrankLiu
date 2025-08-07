@@ -1,6 +1,7 @@
 ﻿using DepartmentsAssignment.Models;
 using DepartmentsAssignment.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DepartmentsAssignment.Controllers
 {
@@ -20,17 +21,22 @@ namespace DepartmentsAssignment.Controllers
         {
             var dept = DepartmentsRepository.GetDepartmentById(id);
             if (dept == null)
-                return Content("<h2 style='color:red'>Department not found</h2><a href='/departments'>Back to list</a>", "text/html");
+            {
+                var errors = new List<string> { "Department not found" };
+                return View("Error", GetErrorMessages());
+            }
 
-            var html = $@"<h1>{dept.Name} Details</h1> <p>Description: {dept.Description}</p> <form method='post' action='/departments/edit'> <input type='hidden' name='Id' value='{dept.Id}' /> Name: <input name='Name' value='{dept.Name}' /><br/> Description: <input name='Description' value='{dept.Description}' /><br/> <button type='submit'>Update</button> </form> <form method='post' action='/departments/delete/{dept.Id}' style='display:inline'> <button type='submit' style='background:red;color:white'>Delete</button> </form> <a href='/departments'>Cancel</a>";
-            return Content(html, "text/html");
+            //var html = $@"<h1>{dept.Name} Details</h1> <p>Description: {dept.Description}</p> <form method='post' action='/departments/edit'> <input type='hidden' name='Id' value='{dept.Id}' /> Name: <input name='Name' value='{dept.Name}' /><br/> Description: <input name='Description' value='{dept.Description}' /><br/> <button type='submit'>Update</button> </form> <form method='post' action='/departments/delete/{dept.Id}' style='display:inline'> <button type='submit' style='background:red;color:white'>Delete</button> </form> <a href='/departments'>Cancel</a>";
+            //return Content(html, "text/html");
+            return View(dept);
         }
 
         [HttpPost]
         public IActionResult Edit([FromForm] Department department)
         {
             if (!ModelState.IsValid || string.IsNullOrWhiteSpace(department.Name))
-                return Content(GetErrorsHtml() + "<a href='/departments'>Back</a>", "text/html");
+                return View("Error", GetErrorMessages());
+            //return Content(GetErrorsHtml() + "<a href='/departments'>Back</a>", "text/html");
 
             DepartmentsRepository.UpdateDepartment(department);
             return RedirectToAction("Index");
@@ -47,8 +53,14 @@ namespace DepartmentsAssignment.Controllers
         [HttpPost]
         public IActionResult Create([FromForm] Department department)
         {
-            if (string.IsNullOrWhiteSpace(department.Name))
-                return Content(GetErrorsHtml() + "<a href='/departments/create'>Try Again</a>", "text/html");
+            //if (string.IsNullOrWhiteSpace(department.Name))
+            //    return Content(GetErrorsHtml() + "<a href='/departments/create'>Try Again</a>", "text/html");
+            if (!ModelState.IsValid)
+            {
+                var errors = GetErrorMessages();
+                return View("Error", errors);
+            }
+
             DepartmentsRepository.AddDepartment(department);
             return RedirectToAction("Index");
         }
@@ -61,7 +73,8 @@ namespace DepartmentsAssignment.Controllers
             if (dept == null)
             {
                 ModelState.AddModelError("id", $"Department with id {id} does not exist.");
-                return Content(GetErrorsHtml() + "<a href='/departments'>Back</a>", "text/html");
+                var errors = GetErrorMessages();
+                return View("Error", errors);
             }
             DepartmentsRepository.DeleteDepartment(dept);
             return RedirectToAction("Index");
@@ -79,6 +92,19 @@ namespace DepartmentsAssignment.Controllers
                 errors.Add("Name is required.");
 
             return "<ul style='color:red'>" + string.Join("", errors.Select(e => $"<li>{e}</li>")) + "</ul>";
+        }
+
+        private List<string> GetErrorMessages()
+        {
+            var errorMessages = new List<string>();
+            foreach (var state in ModelState.Values)
+            {
+                foreach (var error in state.Errors)
+                {
+                    errorMessages.Add(error.ErrorMessage);
+                }
+            }
+            return errorMessages;
         }
 
     }

@@ -677,12 +677,7 @@ _Note: Adjust repository and model code as appropriate; handle IDs as needed._
 
 ---
 
-### Final Notes
 
-- Practice assembling HTML in C# code for now; when you learn Razor views, this process will be much easier and cleaner!
-- This assignment is good practice for CRUD, routing, form handling, and using MVC controllers for UI before learning about Razor views.
-
----
 
 
 

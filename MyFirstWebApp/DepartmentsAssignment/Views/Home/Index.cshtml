@@ -1,0 +1,25 @@
+﻿
+@{
+    string color = (new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today).Days % 2 == 0 ? "green" : "red";
+    var days = (new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today).Days;
+    var b = "nishant2";
+}
+<html>
+<head>
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Welcome Home!</h1>
+    <p style="color:@color">
+    @((new DateTime(DateTime.Today.Year,12,25) - DateTime.Today).Days)
+    </p>
+    @if(days <= 35)
+    {
+        <h1>Christmas is close!</h1>
+    } else
+    {
+        <h1>Welcome home @b</h1>
+    }
+   
+</body>
+</html>

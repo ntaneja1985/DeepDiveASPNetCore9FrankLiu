@@ -6,7 +6,9 @@ namespace DepartmentsAssignment.Controllers
     {
         public IActionResult Index()
         {
-            return Content("<h1>Welcome to Department Management</h1><a href='/departments'>Go to Departments</a>", "text/html");
+            //return Content("<h1>Welcome to Department Management</h1><a href='/departments'>Go to Departments</a>", "text/html");
+            return View();
+        
         }
     }
 }
