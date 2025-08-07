@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnMinimalAPICodeOrganiza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Controllers", "MVC_Controllers\MVC_Controllers.csproj", "{78E7BD36-90B2-4BFE-9FB2-4BCFFFDBB9DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartmentsAssignment", "DepartmentsAssignment\DepartmentsAssignment.csproj", "{2F1C3323-2D6F-42AC-9D1A-88C55FAD8DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{78E7BD36-90B2-4BFE-9FB2-4BCFFFDBB9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78E7BD36-90B2-4BFE-9FB2-4BCFFFDBB9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78E7BD36-90B2-4BFE-9FB2-4BCFFFDBB9DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F1C3323-2D6F-42AC-9D1A-88C55FAD8DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F1C3323-2D6F-42AC-9D1A-88C55FAD8DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F1C3323-2D6F-42AC-9D1A-88C55FAD8DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F1C3323-2D6F-42AC-9D1A-88C55FAD8DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
