@@ -1,0 +1,21 @@
+﻿
+@model Department
+
+@{
+    ViewBag.Title = "Department Details";
+    ViewBag.Action = "edit";
+}
+
+@section title_section {
+    <h3>Department</h3>
+}
+
+@await Html.PartialAsync("_DepartmentDetail",Model)
+
+<form method='post' action='/departments/delete/@Model.Id'>
+    <button type='submit' class="btn btn-danger">Delete</button>
+</form>
+
+
+
+

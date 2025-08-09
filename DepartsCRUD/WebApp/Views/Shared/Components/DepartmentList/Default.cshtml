@@ -1,0 +1,10 @@
+﻿@model List<Department>
+
+@if (Model is not null && Model.Count > 0)
+{
+
+    @foreach (var department in Model)
+    {
+        @await Html.PartialAsync("_DepartmentListItem", department)
+    }
+}

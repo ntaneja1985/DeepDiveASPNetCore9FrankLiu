@@ -1,0 +1,14 @@
+﻿
+@model Department
+
+@{
+    ViewBag.Title = "Create new department";
+    ViewBag.Action = "create";
+}
+
+@section title_section {
+    <h3>Add Department</h3>
+}
+
+@await Html.PartialAsync("_DepartmentDetail",Model)
+

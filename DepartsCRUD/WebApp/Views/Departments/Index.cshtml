@@ -1,0 +1,45 @@
+﻿
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+@section title_section {
+    <h3>Departments</h3>
+}
+
+@await Html.PartialAsync("_SearchBar")
+
+
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thread>
+        @* <tbody id="department-list"> *@
+    <tbody id="department-list">
+        @await Component.InvokeAsync("DepartmentList", new { filter = "" })
+        </tbody>
+    </table>
+
+
+<br />
+<a class="btn btn-primary" href='/departments/create'>Add</a>
+
+
+<script>
+    document.querySelector("#search-button").addEventListener("click",async ()=>{
+        var filter = document.querySelector("#search-filter").value
+        
+        var response = await fetch(`/department-list/${filter}`);
+        var departmentsHtml = await response.text();
+        document.querySelector("#department-list").innerHTML = departmentsHtml;
+    })
+</script>
+
+
+
+

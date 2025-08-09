@@ -1,0 +1,27 @@
+﻿@page "{id:int}/{handler?}"
+@model WebApp.Pages.Employees.EditModel
+@{
+}
+
+<h4>Employee Id: @Model.Id</h4>
+
+<br/>
+
+<form method="post" action="/employees/edit/@Model.Id?handler=save1">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.Id"/>
+    Name:
+    <input type="text" name="name" value="@Model.InputModel?Name/>
+    <button type="submit">Submit</button>
+
+</form>
+
+<br/>
+
+<form method="post" action="/employees/edit/@Model.Id?handler=delete1">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit">Delete</button>
+
+</form>
+

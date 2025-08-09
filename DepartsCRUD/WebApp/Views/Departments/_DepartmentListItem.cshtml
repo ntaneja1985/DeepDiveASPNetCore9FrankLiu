@@ -1,0 +1,10 @@
+﻿@model Department
+
+@if (Model is not null)
+{
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Description</td>
+            <td><a class="btn btn-link" href="/departments/details/@Model.Id">Edit</a></td>
+        </tr>
+}
