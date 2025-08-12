@@ -1,0 +1,86 @@
+﻿@model EmployeeViewModel
+
+@if (Model is not null && Model.Employee is not null)
+{
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        @if (ViewBag.Action == "edit"){
+            <input type="hidden" name="Employee.Id" value="@Model.Employee.Id" />
+        }
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Name</label>
+            </div>
+            <div class="col-6">
+                <input type='text' name='Employee.Name' value='@Model.Employee.Name' class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Position</label>
+            </div>
+            <div class="col-6">
+                <input type='text' name='Employee.Position' value='@Model.Employee.Position' class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Salary</label>
+            </div>
+            <div class="col-6">
+                <input type='number' name='Employee.Salary' value='@Model.Employee.Salary' class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Department</label>
+            </div>
+            <div class="col-6">
+                <select name="Employee.DepartmentId" class="form-control">
+
+                    @if (Model.Departments is not null)
+                    {
+                        @if (ViewBag.Action == "create"){
+                            <option selected value="0">-- Please Select --</option>
+                        }
+                        else{
+                            <option value="0">-- Please Select --</option>
+                        }
+
+                        foreach(var department in Model.Departments){
+                            if (ViewBag.Action == "edit"){
+                                if (department.Id == Model.Employee.DepartmentId){
+                                    <option selected value="@department.Id">@department.Name</option>
+                                }
+                                else{
+                                    <option value="@department.Id">@department.Name</option>
+                                }
+                            }
+                            else{
+                                <option value="@department.Id">@department.Name</option>
+                            }
+                            
+                        }
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <button type='submit' class="btn btn-primary">Save</button>
+                &nbsp;&nbsp;
+                <a href="/employees" class="btn btn-primary">Cancel</a>
+            </div>
+            <div class="col-4">
+                
+            </div>
+        </div>
+    </form>
+}

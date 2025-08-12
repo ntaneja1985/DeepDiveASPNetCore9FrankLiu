@@ -1,0 +1,11 @@
+﻿@page
+@model WebApp.Pages.Employees.CreateModel
+@{
+    ViewBag.Action = "create";
+}
+
+@section title_section {
+    <h3>Add Employee</h3>
+}
+
+@await Html.PartialAsync("_EmployeeDetail", Model.EmployeeViewModel)

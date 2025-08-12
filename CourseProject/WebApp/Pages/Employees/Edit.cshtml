@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model WebApp.Pages.Employees.EditModel
+@{
+    ViewBag.Action = "edit";
+}
+
+@section title_section {
+    <h3>Edit Employee</h3>
+}
+
+@await Html.PartialAsync("_EmployeeDetail", Model.EmployeeViewModel)
+
+<form 
+    name="deleteEmployheeForm" 
+    method="post" 
+    action="/employees/edit/@Model.EmployeeViewModel.Employee.Id?handler=DeleteEmplopyee">
+    @Html.AntiForgeryToken()
+
+    <button type="submit" id="delete-employee" class="btn btn-danger">Delete</button>
+
+</form>
+
+
+@section scripts
+{
+    <script>
+        document.querySelector("#delete-employee").addEventListener("click",  (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const employeeName = '@Model.EmployeeViewModel.Employee.Name';
+
+            const userComfirmation = confirm(`Are you sure you want to delete the employee: ${employeeName}`);
+
+            if (userComfirmation) {
+                document.forms["deleteEmployheeForm"].submit();
+            }
+        });
+    </script>
+}
