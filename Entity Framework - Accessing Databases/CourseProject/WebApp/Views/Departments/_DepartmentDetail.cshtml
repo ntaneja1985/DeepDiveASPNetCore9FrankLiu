@@ -1,0 +1,68 @@
+﻿@model Department
+
+<form method='post'
+      asp-controller="Departments"
+      asp-action="@ViewBag.Action">
+
+    <div asp-validation-summary="All" class="text-danger">
+    </div>
+
+    @if (ViewBag.Action == "edit")
+    {
+        <input asp-for="Id" />
+    }        
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label" asp-for="Name"></label>
+        </div>
+        <div class="col-6">
+            <input asp-for="Name" class="form-control" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label" asp-for="Description"></label>
+        </div>
+        <div class="col-6">
+            <input asp-for="Description" class="form-control" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label" asp-for="Email"></label>
+        </div>
+        <div class="col-6">
+            <input asp-for="Email" class="form-control" />
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <button type='submit' class="btn btn-primary">Save</button>
+            &nbsp;&nbsp;
+            <a asp-controller="Departments"
+               asp-action="Index" class="btn btn-primary">Cancel</a>
+        </div>
+        <div class="col-4">
+            @if (ViewBag.Action == "edit")
+            {
+                <a asp-page="/employees/departmentemployees"
+                   asp-route-departmentId="@Model.Id"
+                   class="btn btn-link">Check Employees</a>
+            }
+        </div>
+    </div>
+    
+</form>
+
+<br/>
+
+
+
+

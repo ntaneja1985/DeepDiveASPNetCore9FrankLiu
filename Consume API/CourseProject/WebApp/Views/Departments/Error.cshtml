@@ -1,0 +1,17 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 style="color:red">Errors:</h1>
+<ul>
+    @if (Model is not null && Model.Count > 0)
+    {
+        foreach (var errorMessage in Model)
+        {
+            <li>@errorMessage</li>
+        }
+    }
+</ul>
+

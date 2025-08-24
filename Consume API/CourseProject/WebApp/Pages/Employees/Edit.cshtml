@@ -1,0 +1,40 @@
+﻿@page "{id:int}"
+@model WebApp.Pages.Employees.EditModel
+@{
+    ViewBag.Action = "edit";
+}
+
+@section title_section {
+    <h3>Edit Employee</h3>
+}
+
+<partial name="_EmployeeDetail", model="Model.EmployeeViewModel" />
+
+<form 
+    name="deleteEmployheeForm" 
+    method="post" 
+    asp-page="/employees/edit"
+    asp-route-id="@Model.EmployeeViewModel.Employee.Id"
+    asp-page-handler="DeleteEmplopyee">
+
+    <button type="submit" id="delete-employee" class="btn btn-danger">Delete</button>
+
+</form>
+
+
+@section scripts
+{
+    <script>
+        document.querySelector("#delete-employee").addEventListener("click",  (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const employeeName = '@Model.EmployeeViewModel.Employee.Name';
+
+            const userComfirmation = confirm(`Are you sure you want to delete the employee: ${employeeName}`);
+
+            if (userComfirmation) {
+                document.forms["deleteEmployheeForm"].submit();
+            }
+        });
+    </script>
+}

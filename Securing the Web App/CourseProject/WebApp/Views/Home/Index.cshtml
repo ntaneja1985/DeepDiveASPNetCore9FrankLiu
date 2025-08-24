@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+
+    var days = new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today;
+
+    if (DateTime.Today > new DateTime(DateTime.Today.Year, 12, 25))
+    {
+        days = new DateTime(DateTime.Today.Year + 1, 12, 25) - DateTime.Today;
+    }
+
+    string color = days.Days % 2 == 0 ? "green" : "red";
+}
+
+<img src="/images/employees.png" asp-append-version="true" />
+
+    @if(days.Days <= 35)
+    {
+        <h1>Christmas is around the corner!</h1>
+        @:Happy holidays!
+    }
+    else{
+        switch(color){
+            case "green":
+                <h1 style="color:green">Welcome home!</h1>
+                break;
+            case "red":
+                <h1 style="color:red">Welcome home!</h1>
+                break;
+        }
+
+        @days.Days <text> days before Christmas!</text>
+    }    
+        
+    

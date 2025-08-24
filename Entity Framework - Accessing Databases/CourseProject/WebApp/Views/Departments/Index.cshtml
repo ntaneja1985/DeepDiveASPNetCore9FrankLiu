@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Departments";
+}
+
+@section title_section {
+    <h3>Departments</h3>
+}
+
+@await Html.PartialAsync("_SearchBar")
+
+<table class="table table-striped">
+    <thread>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thread>
+    <tbody id="department-list">        
+    </tbody>
+</table>
+
+
+<br />
+<a class="btn btn-primary"
+   asp-controller="Departments"
+   asp-action="Create">Add</a>
+
+@section scripts
+{
+    <script>
+
+        loadDepartments('');
+
+        document.querySelector("#search-button").addEventListener("click", async () => {
+            var filter = document.querySelector("#search-filter").value;
+
+            loadDepartments(filter);
+        });
+
+        async function loadDepartments(filter){
+            var response = await fetch(`/department-list/${filter}`);
+            var departmentsHTML = await response.text();
+
+            document.querySelector("#department-list").innerHTML = departmentsHTML;
+        }
+
+    </script>
+}
+
+
+
+
+

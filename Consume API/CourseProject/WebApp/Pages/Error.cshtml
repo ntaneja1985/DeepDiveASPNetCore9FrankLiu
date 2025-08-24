@@ -1,0 +1,17 @@
+﻿@page
+@model WebApp.Pages.ErrorModel
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 style="color:red">Errors:</h1>
+<ul>
+    @if (Model is not null && Model.Errors is not null && Model.Errors.Count > 0)
+    {
+        foreach (var errorMessage in Model.Errors)
+        {
+            <li>@errorMessage</li>
+        }
+    }
+</ul>

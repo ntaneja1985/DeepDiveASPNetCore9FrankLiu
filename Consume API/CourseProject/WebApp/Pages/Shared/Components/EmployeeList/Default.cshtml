@@ -1,0 +1,10 @@
+﻿
+@model List<Employee>
+
+@if (Model is not null && Model.Count > 0)
+{
+    foreach (var emp in Model)
+    {
+        @await Html.PartialAsync("_EmployeeListItem", emp)
+    }
+}
